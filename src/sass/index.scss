@@ -1,2 +1,31 @@
 @import './common';
 @import './example';
+
+.showLoader {
+  display: block;
+}
+.hideLoader {
+  display: none;
+}
+
+.showError {
+  display: block;
+}
+
+.hideError {
+  display: none;
+}
+
+.showSelect {
+  display: block;
+}
+
+.hideSelect {
+  display: none;
+}
+
+.cat-info {
+  img {
+    width: 600px;
+  }
+}
