@@ -1,19 +1,28 @@
-export function fetchCats(url) {
-  return fetch(`${url}`).then(res => {
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  width: '500px',
+  cssAnimationStyle: 'zoom',
+  closeButton: true,
+  clickToClose: true,
+});
 
-    return res.json();
-  });
-}
-
-export function fetchCatByBreed(url, breedId) {
-  return fetch(`${url}?breed_ids=${breedId}`).then(resp => {
-    if (!resp.ok) {
-      throw new Error(resp.statusText);
-    }
+export async function fetchBreeds(url) {
+  try {
+    const resp = await fetch(url);
 
     return resp.json();
-  });
+  } catch (error) {
+    Notiflix.Notify.failure('Something went wrong please try again');
+  }
+}
+
+export async function getCatImage(moreInfoUrl) {
+  try {
+    const resp = await fetch(moreInfoUrl);
+    const dataObj = await resp.json();
+    const { url } = dataObj[0];
+    return url;
+  } catch (error) {
+    Notiflix.Notify.failure('Cant get Image of cat, please try again');
+  }
 }
