@@ -9,7 +9,9 @@ Notiflix.Notify.init({
 export async function fetchBreeds(url) {
   try {
     const resp = await fetch(url);
-
+    if (!resp.ok) {
+      throw new Error(resp.statusText);
+    }
     return resp.json();
   } catch (error) {
     Notiflix.Notify.failure('Something went wrong please try again');
@@ -19,6 +21,9 @@ export async function fetchBreeds(url) {
 export async function getCatImage(moreInfoUrl) {
   try {
     const resp = await fetch(moreInfoUrl);
+    if (!resp.ok) {
+      throw new Error(resp.statusText);
+    }
     const dataObj = await resp.json();
     const { url } = dataObj[0];
     return url;
